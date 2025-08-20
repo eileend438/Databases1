@@ -4,7 +4,7 @@ import org.example.domain.Student;
 import org.example.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.example.domain.Student;
 import java.util.List;
 
 @RestController
@@ -48,4 +48,14 @@ public class StudentController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/students/by-age")
+    public List<Student> getStudentsByAgeRange(@RequestParam int min, @RequestParam int max) {
+        return service.getStudentsByAgeBetween(min, max);
+    }
+
+    @GetMapping("/{id}/students")
+    public List<Student> getStudentsByFaculty(@PathVariable Long id) {
+        return service.getStudentsByFacultyId(id);
+    }
+
 }

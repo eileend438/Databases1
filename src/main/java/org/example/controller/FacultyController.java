@@ -4,7 +4,7 @@ import org.example.domain.Faculty;
 import org.example.service.FacultyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.example.domain.Student;
 import java.util.List;
 
 @RestController
@@ -48,4 +48,16 @@ public class FacultyController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+        @GetMapping("/search")
+    public List<Faculty> searchFaculties(@RequestParam String query) {
+        return service.findByNameOrColor(query);
+    }
+
+    @GetMapping("/{id}/students")
+    public List<Student> getStudentsByFaculty(@PathVariable Long id) {
+        return service.getStudentsByFacultyId(id);
+    }
+
+
 }
