@@ -1,4 +1,4 @@
-package test.java;
+package org.example.controller;
 
 import org.example.domain.Faculty;
 import org.junit.jupiter.api.Test;
