@@ -55,5 +55,7 @@ public class FacultyService {
                 .map(Faculty::getStudents)
                 .orElseThrow(() -> new EntityNotFoundException("Faculty not found"));
     }
-
+    public Optional<Faculty> getFacultyByStudentId(Long studentId) {
+        return facultyRepository.findByStudentId(studentId);
+    }
 }

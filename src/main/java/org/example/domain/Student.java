@@ -28,7 +28,7 @@ public class Student {
     public void setName(String name) { this.name = name; }
     public void setAge(int age) { this.age = age; }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 

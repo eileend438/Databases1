@@ -54,10 +54,11 @@ public class FacultyController {
         return service.findByNameOrColor(query);
     }
 
-    @GetMapping("/{id}/students")
-    public List<Student> getStudentsByFaculty(@PathVariable Long id) {
-        return service.getStudentsByFacultyId(id);
+    @GetMapping("/by-student/{id}")
+    public ResponseEntity<Faculty> getFacultyByStudent(@PathVariable Long id) {
+        return service.getFacultyByStudentId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
-
 
 }
