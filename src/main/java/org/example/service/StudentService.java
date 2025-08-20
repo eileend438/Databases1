@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -43,4 +44,15 @@ public class StudentService {
     public void delete(Long id) {
         studentRepository.deleteById(id);
     }
+    public List<Student> getStudentsByAgeBetween(int min, int max) {
+        return studentRepository.findByAgeBetween(min, max);
+    }
+
+    public List<Student> getStudentsByFacultyId(Long facultyId) {
+        return studentRepository.findAll().stream()
+                .filter(s -> s.getFaculty() != null && facultyId.equals(s.getFaculty().getId()))
+                .collect(Collectors.toList());
+    }
+
+
 }
