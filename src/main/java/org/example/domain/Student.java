@@ -27,4 +27,13 @@ public class Student {
 
     public void setName(String name) { this.name = name; }
     public void setAge(int age) { this.age = age; }
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
 }
