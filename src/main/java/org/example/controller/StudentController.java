@@ -4,7 +4,6 @@ import org.example.domain.Student;
 import org.example.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.example.domain.Student;
 import java.util.List;
 
 @RestController
@@ -57,5 +56,21 @@ public class StudentController {
     public List<Student> getStudentsByFaculty(@PathVariable Long id) {
         return service.getStudentsByFacultyId(id);
     }
+
+    @GetMapping("/count")
+    public long getTotalStudents() {
+        return service.getTotalStudents();
+    }
+
+    @GetMapping("/average-age")
+    public double getAverageAge() {
+        return service.getAverageAge();
+    }
+
+    @GetMapping("/last-five")
+    public List<Student> getLastFiveStudents() {
+        return service.getLastFiveStudents();
+    }
+
 
 }
