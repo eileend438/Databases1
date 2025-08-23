@@ -36,6 +36,13 @@ public class Faculty {
     public List<Student> getStudents() {
         return students;
     }
-
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
 
 }
