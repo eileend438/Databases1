@@ -7,6 +7,7 @@ import org.example.repository.FacultyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -81,4 +82,13 @@ public class FacultyService {
         logger.info("Was invoked method to get faculty by student id: {}", studentId);
         return facultyRepository.findByStudentId(studentId);
     }
+
+    public String getLongestFacultyName() {
+        return facultyRepository.findAll().stream()
+                .map(Faculty::getName)
+                .filter(name -> name != null)
+                .max(Comparator.comparingInt(String::length))
+                .orElse("Not found");
+    }
+
 }

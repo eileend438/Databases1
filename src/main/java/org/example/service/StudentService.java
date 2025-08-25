@@ -88,4 +88,21 @@ public class StudentService {
         logger.info("Was invoked method getLastFiveStudents");
         return studentRepository.getLastFiveStudents();
     }
+    public List<String> getNamesStartingWithA() {
+        return studentRepository.findAll().stream()
+                .map(Student::getName)
+                .filter(name -> name != null && name.toUpperCase().startsWith("А"))
+                .map(String::toUpperCase)
+                .sorted()
+                .toList();
+    }
+
+    public double getAverageAgeViaStream() {
+        return studentRepository.findAll().stream()
+                .mapToInt(Student::getAge)
+                .average()
+                .orElse(0.0);
+    }
+
+
 }
