@@ -104,5 +104,10 @@ public class StudentService {
                 .orElse(0.0);
     }
 
+    public synchronized void printStudentName(String name) {
+        System.out.println(name);
+    }
+
+
 
 }
