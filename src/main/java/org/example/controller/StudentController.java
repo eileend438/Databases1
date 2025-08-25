@@ -4,7 +4,6 @@ import org.example.domain.Student;
 import org.example.service.StudentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -48,4 +47,50 @@ public class StudentController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/students/by-age")
+    public List<Student> getStudentsByAgeRange(@RequestParam int min, @RequestParam int max) {
+        return service.getStudentsByAgeBetween(min, max);
+    }
+
+    @GetMapping("/{id}/students")
+    public List<Student> getStudentsByFaculty(@PathVariable Long id) {
+        return service.getStudentsByFacultyId(id);
+    }
+
+    @GetMapping("/count")
+    public long getTotalStudents() {
+        return service.getTotalStudents();
+    }
+
+    @GetMapping("/average-age")
+    public double getAverageAge() {
+        return service.getAverageAge();
+    }
+
+    @GetMapping("/last-five")
+    public List<Student> getLastFiveStudents() {
+        return service.getLastFiveStudents();
+    }
+
+    @GetMapping("/students/names-starting-with-a")
+    public List<String> getNamesStartingWithA() {
+        return service.getNamesStartingWithA();
+    }
+    @GetMapping("/students/average-age")
+    public double getAverageAgeWithStream() {
+        return service.getAverageAgeViaStream();
+    }
+
+    @GetMapping("/students/print-parallel")
+    public void printStudentsInParallel() {
+        service.printStudentsInParallel();
+    }
+
+    @GetMapping("/students/print-synchronized")
+    public void printStudentsSynchronized() {
+        service.printStudentsSynchronized();
+    }
+
+
+
 }
