@@ -83,55 +83,14 @@ public class StudentController {
 
     @GetMapping("/students/print-parallel")
     public void printStudentsInParallel() {
-        List<Student> students = service.getAll();
-
-        if (students.size() < 6) {
-            System.out.println("Недостаточно студентов для выполнения задания.");
-            return;
-        }
-
-        System.out.println(students.get(0).getName());
-        System.out.println(students.get(1).getName());
-
-        Thread thread1 = new Thread(() -> {
-            System.out.println(students.get(2).getName());
-            System.out.println(students.get(3).getName());
-        });
-
-        Thread thread2 = new Thread(() -> {
-            System.out.println(students.get(4).getName());
-            System.out.println(students.get(5).getName());
-        });
-
-        thread1.start();
-        thread2.start();
+        service.printStudentsInParallel();
     }
 
     @GetMapping("/students/print-synchronized")
     public void printStudentsSynchronized() {
-        List<Student> students = service.getAll();
-
-        if (students.size() < 6) {
-            System.out.println("Недостаточно студентов для выполнения задания.");
-            return;
-        }
-
-        service.printStudentName(students.get(0).getName());
-        service.printStudentName(students.get(1).getName());
-
-        Thread thread1 = new Thread(() -> {
-            service.printStudentName(students.get(2).getName());
-            service.printStudentName(students.get(3).getName());
-        });
-
-        Thread thread2 = new Thread(() -> {
-            service.printStudentName(students.get(4).getName());
-            service.printStudentName(students.get(5).getName());
-        });
-
-        thread1.start();
-        thread2.start();
+        service.printStudentsSynchronized();
     }
+
 
 
 }
